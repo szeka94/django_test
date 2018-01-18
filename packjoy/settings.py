@@ -43,7 +43,7 @@ INSTALLED_APPS = [
 
     'widget_tweaks',
 ] + get_core_apps(
-    ['apps.catalogue'],
+    ['packjoy.apps.catalogue']
 )
 
 SITE_ID = 1
