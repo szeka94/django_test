@@ -2,19 +2,19 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
-import oscar.core.utils
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('order', '0001_initial'),
+        ('catalogue', '0003_data_migration_slugs'),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='order',
-            name='currency',
-            field=models.CharField(default=oscar.core.utils.get_default_currency, max_length=12, verbose_name='Currency'),
+            model_name='category',
+            name='slug',
+            field=models.SlugField(max_length=255, verbose_name='Slug'),
+            preserve_default=True,
         ),
     ]

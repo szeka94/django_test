@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     'widget_tweaks',
-] + get_core_apps()
+] + get_core_apps(
+    ['apps.catalogue'],
+)
 
 SITE_ID = 1
 
@@ -139,12 +141,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
 # OSCAR settings
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 HAYSTACK_CONNECTIONS = {
     'default': {
@@ -161,3 +165,6 @@ LANGUAGES = (
 
 OSCAR_SHOP_NAME = 'Ejoy'
 
+OSCAR_IMAGE_FOLDER = 'images/products/'
+
+OSCAR_DEFAULT_CURRENCY = 'RON'
