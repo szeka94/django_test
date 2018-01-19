@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 from oscar.defaults import *
-from oscar import OSCAR_MAIN_TEMPLATE_DIR, get_core_apps
+from oscar import get_core_apps
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -26,7 +26,7 @@ SECRET_KEY = '3o5u_y#c*p_njogk^(kjss_f!3s)3m-@&#l4$1_kel)xty!ab)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ejoy.pythonanywhere.com']
 
 
 # Application definition
@@ -66,7 +66,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'packjoy/templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -140,7 +140,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/packjoy/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
@@ -148,7 +148,7 @@ STATICFILES_DIRS = [
 
 # OSCAR settings
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'packjoy/media')
 
 HAYSTACK_CONNECTIONS = {
     'default': {
