@@ -42,9 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     'widget_tweaks',
-] + get_core_apps(
-    ['packjoy.apps.catalogue']
-)
+] + get_core_apps([
+    'packjoy.apps.catalogue',
+    'packjoy.apps.shipping',
+    'packjoy.apps.checkout'])
 
 SITE_ID = 1
 
@@ -172,3 +173,32 @@ OSCAR_SHOP_NAME = 'Ejoy'
 OSCAR_IMAGE_FOLDER = 'images/products/'
 
 OSCAR_DEFAULT_CURRENCY = 'RON'
+
+# some PAYPALL API credentials
+PAYPAL_API_USERNAME = os.environ.get('PAYPAL_API_USERNAME')
+PAYPAL_API_PASSWORD = os.environ.get('PAYPAL_API_PASSWORD')
+PAYPAL_API_SIGNATURE = os.environ.get('PAYPAL_API_SIGNATURE')
+PAYPAL_SANDBOX_MODE = True
+PAYPAL_CALLBACK_HTTPS = False
+PAYPAL_API_VERSION = '119'
+PAYPAL_CURRENCY = PAYPAL_PAYFLOW_CURRENCY = 'GBP'
+PAYPAL_PAYFLOW_DASHBOARD_FORMS = True
+
+OSCAR_ALLOW_ANON_CHECKOUT = True
+
+from django.utils.translation import ugettext_lazy as _
+OSCAR_DASHBOARD_NAVIGATION.append(
+    {
+        'label': _('PayPal'),
+        'icon': 'icon-globe',
+        'children': [
+            {
+                'label': _('PayFlow transactions'),
+                'url_name': 'paypal-payflow-list',
+            },
+            {
+                'label': _('Express transactions'),
+                'url_name': 'paypal-express-list',
+            },
+        ]
+    })
