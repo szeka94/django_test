@@ -13,6 +13,9 @@ from oscar.defaults import *
 from oscar import get_core_apps
 import os
 
+
+location = lambda x: os.path.join(os.path.dirname(os.path.realpath(__file__)), x)
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -142,14 +145,15 @@ USE_L10N = True
 
 USE_TZ = True
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-
 STATIC_URL = '/packjoy/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
 
 # OSCAR settings
 MEDIA_URL = '/media/'
@@ -174,31 +178,10 @@ OSCAR_IMAGE_FOLDER = 'images/products/'
 
 OSCAR_DEFAULT_CURRENCY = 'RON'
 
-# some PAYPALL API credentials
-PAYPAL_API_USERNAME = os.environ.get('PAYPAL_API_USERNAME')
-PAYPAL_API_PASSWORD = os.environ.get('PAYPAL_API_PASSWORD')
-PAYPAL_API_SIGNATURE = os.environ.get('PAYPAL_API_SIGNATURE')
-PAYPAL_SANDBOX_MODE = True
-PAYPAL_CALLBACK_HTTPS = False
-PAYPAL_API_VERSION = '119'
-PAYPAL_CURRENCY = PAYPAL_PAYFLOW_CURRENCY = 'GBP'
-PAYPAL_PAYFLOW_DASHBOARD_FORMS = True
+OSCAR_MISSING_IMAGE_URL = 'image_not_found.png'
 
 OSCAR_ALLOW_ANON_CHECKOUT = True
 
-from django.utils.translation import ugettext_lazy as _
-OSCAR_DASHBOARD_NAVIGATION.append(
-    {
-        'label': _('PayPal'),
-        'icon': 'icon-globe',
-        'children': [
-            {
-                'label': _('PayFlow transactions'),
-                'url_name': 'paypal-payflow-list',
-            },
-            {
-                'label': _('Express transactions'),
-                'url_name': 'paypal-express-list',
-            },
-        ]
-    })
+
+# 2CHECKOUT settings
+CHECKOUT_SUBMIT_URL = os.environ.get('CHECKOUT_SUBMIT_URL')

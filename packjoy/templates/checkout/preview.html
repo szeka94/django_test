@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block place_order %}
-    <form method="post" action="{% url 'checkout:preview' %}" id="place_order_form">
+    <form method="post" action="{{ submit.url }}" id="place_order_form">
         {% csrf_token %}
         <input type="hidden" name="action" value="place_order" />
 
@@ -25,7 +25,9 @@
             get re-submitted when the user confirms the order.
         {% endcomment %}
         <div style="display:none">
-            {% block hiddenforms %}{% endblock %}
+            {% block hiddenforms %}
+                {% include 'partials/hidden-submit-form.html' %}
+            {% endblock %}
         </div>
 
         <div class="form-group clearfix">
