@@ -1,14 +1,27 @@
-<input type='hidden' name='sid' value='1303908' />
+<input type='hidden' name='sid' value='{{ submit.account_number }}' />
 <input type='hidden' name='mode' value='2CO' />
-<input type='hidden' name='li_0_type' value='product' />
-<input type='hidden' name='li_0_name' value='invoice123' />
-<input type='hidden' name='li_0_price' value='25.99' />
-<input type='hidden' name='card_holder_name' value='Checkout Shopper' />
-<input type='hidden' name='street_address' value='123 Test Address' />
-<input type='hidden' name='street_address2' value='Suite 200' />
-<input type='hidden' name='city' value='Columbus' />
-<input type='hidden' name='state' value='OH' />
-<input type='hidden' name='zip' value='43228' />
-<input type='hidden' name='country' value='USA' />
-<input type='hidden' name='email' value='example@2co.com' />
-<input type='hidden' name='phone' value='614-921-2450' />
+<input type='hidden' name='street_address' value='{{ shipping_address.line1 }}' />
+<input type='hidden' name='city' value='{{ shipping_address.city }}' />
+<input type='hidden' name='state' value='{{ shipping_address.state }}' />
+<input type='hidden' name='zip' value='{{ shipping_address.postcode }}' />
+<input type='hidden' name='country' value='{{ shipping_address.country }}' />
+<input type='hidden' name='email' value='{{ user.email }}' />
+<input type='hidden' name='card_holder_name' value='{{ shipping_address.first_name }} {{ shipping_address.last_name }}' />
+<input type='hidden' name='phone' value='{{ shipping_address.phone_number }}' />
+<input type='hidden' name='merchant_order_id' value='asdasd' />
+
+{% for line in basket.all_lines %}
+<input type="hidden" name="li_{{ forloop.counter0 }}_type" value="{{ line.product.product_class }}" />
+<input type="hidden" name="li_{{ forloop.counter0 }}_name" value="{{ line.product.title }}" />
+<input type="hidden" name="li_{{ forloop.counter0 }}_product_id" value="{{ line.product.title }}" />
+<input type="hidden" name="li_{{ forloop.counter0 }}_price" value="{{ line.unit_price_incl_tax }}" />
+<input type="hidden" name="li_{{ forloop.counter0 }}_quantity" value="{{ line.quantity }}" />
+
+<!--<h1>{{ line.unit_price_incl_tax }}</h1>-->
+
+<!--<h1>li_{{ forloop.counter0 }}_type {{ line.product.product_class }}' </h1>-->
+<!--<h1>li_{{ forloop.counter0 }}_name {{ line.product.title }}' </h1>-->
+<!--<h1>li_{{ forloop.counter0 }}_product_id {{ line.product.title }}' </h1>-->
+<!--<h1>li_{{ forloop.counter0 }}_price {{ line.line_price_incl_tax }}' </h1>-->
+<!--<h1>li_{{ forloop.counter0 }}_quantity {{ line.quantity }}' </h1>-->
+{% endfor %}

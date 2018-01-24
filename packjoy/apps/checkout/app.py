@@ -14,6 +14,7 @@ class CheckoutApplication(app.CheckoutApplication):
     shipping_method_view = get_class('checkout.views', 'ShippingMethodView')
     payment_method_view = get_class('checkout.views', 'PaymentMethodView')
     payment_details_view = get_class('checkout.views', 'PaymentDetailsView')
+    return_redirect_view = get_class('checkout.views', 'ReturnCheckoutView')
     thankyou_view = get_class('checkout.views', 'ThankYouView')
 
     def get_urls(self):
@@ -46,6 +47,8 @@ class CheckoutApplication(app.CheckoutApplication):
                 name='preview'),
             url(r'thank-you/$', self.thankyou_view.as_view(),
                 name='thank-you'),
+            url(r'return/$', self.return_redirect_view.as_view(),
+                name='return-redirect'),
         ]
         return self.post_process_urls(urls)
 

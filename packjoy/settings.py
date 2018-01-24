@@ -48,7 +48,8 @@ INSTALLED_APPS = [
 ] + get_core_apps([
     'packjoy.apps.catalogue',
     'packjoy.apps.shipping',
-    'packjoy.apps.checkout'])
+    'packjoy.apps.checkout',
+])
 
 SITE_ID = 1
 
@@ -185,3 +186,5 @@ OSCAR_ALLOW_ANON_CHECKOUT = True
 
 # 2CHECKOUT settings
 CHECKOUT_SUBMIT_URL = os.environ.get('CHECKOUT_SUBMIT_URL')
+
+CHECKOUT_ACCOUNT_NUMBER = os.environ.get('CHECKOUT_ACCOUNT_NUMBER')

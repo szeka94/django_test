@@ -24,9 +24,6 @@
     <div class="row shipping-payment">
         {% block shipping_address %}
             <div class="col-sm-6">
-                <div class="sub-header">
-                    <h2>{% trans "Shipping" %}</h2>
-                </div>
                 {% if shipping_address %}
                     <div class="well well-info">
                         {% block shipping_address_actions %}
@@ -59,7 +56,36 @@
                 {% endif %}
 
                 {% if shipping_method %}
-                    <div class="well well-info">
+                    <!--<div class="well well-info">-->
+                            <!--<a href="{% url 'checkout:shipping-method' %}" class="pull-right">-->
+                                <!--{% trans "Change" %}-->
+                            <!--</a>-->
+                        <!--<h3>{% trans "Shipping method" %}</h3>-->
+                        <!--<p>{{ shipping_method.name }}-->
+                            <!--{% if shipping_method.description %}-->
+                                <!-- - {{ shipping_method.description|safe }}-->
+                            <!--{% endif %}-->
+                        <!--</p>-->
+
+                    <!--</div>-->
+                {% endif %}
+            </div>
+        {% endblock shipping_address %}
+
+        {# You will almost certainly want to override this block to provide a payment summary #}
+        {% block payment_method %}
+            <div class="col-sm-6">
+                <!--<div class="sub-header">-->
+                    <!--<h2>{% trans "Payment" %}</h2>-->
+                <!--</div>-->
+                <!--<div class="well well-success">-->
+                    <!--<a href="{% url 'checkout:payment-details' %}" class="pull-right">-->
+                        <!--{% trans "Change" %}-->
+                    <!--</a>-->
+                    <!--<h3>{% trans "Payment" %}</h3>-->
+                    <!--<p>{% trans "Payment details to go here" %}</p>-->
+                <!--</div>-->
+                <div class="well well-info">
                         {% block shipping_method_actions %}
                             <a href="{% url 'checkout:shipping-method' %}" class="pull-right">
                                 {% trans "Change" %}
@@ -72,23 +98,6 @@
                             {% endif %}
                         </p>
 
-                    </div>
-                {% endif %}
-            </div>
-        {% endblock shipping_address %}
-
-        {# You will almost certainly want to override this block to provide a payment summary #}
-        {% block payment_method %}
-            <div class="col-sm-6">
-                <div class="sub-header">
-                    <h2>{% trans "Payment" %}</h2>
-                </div>
-                <div class="well well-success">
-                    <a href="{% url 'checkout:payment-details' %}" class="pull-right">
-                        {% trans "Change" %}
-                    </a>
-                    <h3>{% trans "Payment" %}</h3>
-                    <p>{% trans "Payment details to go here" %}</p>
                 </div>
             </div>
         {% endblock payment_method %}
