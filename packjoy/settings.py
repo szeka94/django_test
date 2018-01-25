@@ -179,12 +179,27 @@ OSCAR_IMAGE_FOLDER = 'images/products/'
 
 OSCAR_DEFAULT_CURRENCY = 'RON'
 
-OSCAR_MISSING_IMAGE_URL = 'image_not_found.png'
-
 OSCAR_ALLOW_ANON_CHECKOUT = True
+
+OSCAR_HIDDEN_FEATURES = ['wishlists']
+
+OSCAR_REQUIRED_ADDRESS_FIELDS = ('first_name', 'last_name', 'line1', 'line4', 'postcode',
+                                 'country', 'phone_number', 'state')
+OSCAR_FROM_EMAIL = 'ejoyletter@gmail.com'
+
+OSCAR_MISSING_IMAGE_URL = 'image_not_found.png'
 
 
 # 2CHECKOUT settings
 CHECKOUT_SUBMIT_URL = os.environ.get('CHECKOUT_SUBMIT_URL')
 
 CHECKOUT_ACCOUNT_NUMBER = os.environ.get('CHECKOUT_ACCOUNT_NUMBER')
+
+CHECKOUT_SECRET_KEY = os.environ.get('CHECKOUT_SECRET_KEY')
+
+
+EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
+
+MAILGUN_ACCESS_KEY = os.environ.get('MAILGUN_ACCESS_KEY')
+
+MAILGUN_SERVER_NAME = os.environ.get('MAILGUN_SERVER_NAME')

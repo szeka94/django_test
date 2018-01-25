@@ -1,6 +1,13 @@
-{% load i18n %}{% block header %}{% endblock %}
+{% load i18n %}
+{% block header %}{% endblock %}
 {% block body %}{% endblock %}
 
 {% block footer %}
 <p>{% trans "Thanks for using our site!" %}</p>
-<p>{% blocktrans with name=site.name %}The {{ name }} team{% endblocktrans %}</p>{% endblock %}
+<p>
+    {% blocktrans %}
+        The <a href="http://ejoy.pythonanywhere.com" target="_blank" style="color: #000001; text-decoration: underline; font-weight: bold;">Ejoy-Shop</a>
+        team
+    {% endblocktrans %}
+</p>
+{% endblock %}
