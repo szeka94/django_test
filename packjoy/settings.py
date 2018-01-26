@@ -29,7 +29,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG_MODE', False)
 
 ALLOWED_HOSTS = ['ejoy.pythonanywhere.com',
-                 'localhost']
+                 'localhost',
+                 'api.mailgun.net',
+                 'packjoy.store',]
 
 
 # Application definition
