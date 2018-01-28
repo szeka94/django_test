@@ -31,7 +31,6 @@ class PaymentDetailsView(OscarPaymentDetailsView):
     def get_context_data(self, **kwargs):
         context = super(PaymentDetailsView, self).get_context_data(**kwargs)
         context['submit'] = self.collect_submit_data()
-        pp.pprint(context)
         return context
 
     @staticmethod
