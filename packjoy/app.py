@@ -49,3 +49,6 @@ class EjoyShop(Shop):
 
 
 application = EjoyShop()
+
+
+

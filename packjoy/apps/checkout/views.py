@@ -31,7 +31,6 @@ class PaymentDetailsView(OscarPaymentDetailsView):
     def get_context_data(self, **kwargs):
         context = super(PaymentDetailsView, self).get_context_data(**kwargs)
         context['submit'] = self.collect_submit_data()
-        pp.pprint(context)
         return context
 
     @staticmethod
@@ -51,9 +50,8 @@ class ReturnCheckoutView(PaymentDetailsView):
             data['order_number'] = request.GET.get('order_number')
             data['total'] = request.GET.get('total')
             data['key'] = request.GET.get('key')
-            return self.handle_place_order_submission(resp=data)
             try:
-                pass
+                return self.handle_place_order_submission(resp=data)
             except PaymentError:
                 messages.error(self.request, _('''Something went wrong during your card processing. 
                                                 Please Try again, if the problem persist please,
