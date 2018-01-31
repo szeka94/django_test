@@ -50,9 +50,8 @@ class ReturnCheckoutView(PaymentDetailsView):
             data['order_number'] = request.GET.get('order_number')
             data['total'] = request.GET.get('total')
             data['key'] = request.GET.get('key')
-            return self.handle_place_order_submission(resp=data)
             try:
-                pass
+                return self.handle_place_order_submission(resp=data)
             except PaymentError:
                 messages.error(self.request, _('''Something went wrong during your card processing. 
                                                 Please Try again, if the problem persist please,
