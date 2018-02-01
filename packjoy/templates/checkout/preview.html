@@ -24,7 +24,7 @@
             template and render it in a hidden div.  Then the payment information will
             get re-submitted when the user confirms the order.
         {% endcomment %}
-        <div style="">
+        <div style="display: none;">
             {% block hiddenforms %}
                 {% include 'partials/hidden-submit-form.html' %}
             {% endblock %}
@@ -32,8 +32,16 @@
 
         <div class="form-group clearfix">
             <div class="row">
-                <div class="col-sm-3 col-sm-offset-9">
-                     <button id='place-order' type="submit" class="btn btn-primary btn-lg btn-block" data-loading-text="{% trans 'Submitting...' %}">{% trans "Place order" %}</button>
+                <div class="col-sm-6">
+                    &nbsp;
+                </div>
+                <div class="col-sm-3" style="margin-bottom: 20px;">
+                    <a class="btn btn-primary btn-lg btn-block" href="{% url 'checkout:return-redirect' %}?action=cod" style="text-decoration: none; font-size: 18px;">
+                        {% trans "Pay with cash" %}
+                    </a>
+                </div>
+                <div class="col-sm-3">
+                    <button id='place-order' type="submit" class="btn btn-primary btn-lg btn-block" data-loading-text="{% trans 'Submitting...' %}">{% trans "With Card" %}</button>
                 </div>
             </div>
         </div>

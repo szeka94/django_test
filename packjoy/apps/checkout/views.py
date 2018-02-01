@@ -9,8 +9,9 @@ from django.utils.translation import ugettext as _
 
 from oscar.apps.checkout.views import ShippingMethodView as OscarShippingMethodView, \
                                         PaymentDetailsView as OscarPaymentDetailsView
-from oscar.apps.payment.exceptions import  PaymentError
+from oscar.apps.payment.exceptions import PaymentError
 from oscar.apps.payment import models
+from oscar.apps.checkout.views import PaymentMethodView as OscarPaymentMethodView
 
 pp = pprint.PrettyPrinter(indent=4)
 
@@ -24,6 +25,31 @@ class ShippingMethodView(OscarShippingMethodView):
         and go directly to the pre
         '''
         return redirect('checkout:preview')
+
+
+class PaymentMethodView(OscarPaymentMethodView):
+    """
+    View for a user to choose which payment method(s) they want to use.
+
+    This would include setting allocations if payment is to be split
+    between multiple sources. It's not the place for entering sensitive details
+    like bankcard numbers though - that belongs on the payment details view.
+    """
+    pre_conditions = [
+        'check_basket_is_not_empty',
+        'check_basket_is_valid',
+        'check_user_email_is_captured',
+        'check_shipping_data_is_captured']
+    skip_conditions = ['skip_unless_payment_is_required']
+
+    def get(self, request, *args, **kwargs):
+        # By default we redirect straight onto the payment details view. Shops
+        # that require a choice of payment method may want to override this
+        # method to implement their specific logic.
+        return self.get_success_response()
+
+    def get_success_response(self):
+        return redirect('checkout:payment-details')
 
 
 class PaymentDetailsView(OscarPaymentDetailsView):
@@ -45,21 +71,22 @@ class PaymentDetailsView(OscarPaymentDetailsView):
 class ReturnCheckoutView(PaymentDetailsView):
 
     def get(self, request, *args, **kwargs):
-        if request.GET.get('action') == 'place_order':
-            data = dict()
-            data['order_number'] = request.GET.get('order_number')
-            data['total'] = request.GET.get('total')
-            data['key'] = request.GET.get('key')
+        action_param = request.GET.get('action', None)
+        if action_param is not None:
             try:
-                return self.handle_place_order_submission(resp=data)
+                self.handle_place_order_submission(action=action_param, params=request.GET)
             except PaymentError:
-                messages.error(self.request, _('''Something went wrong during your card processing. 
-                                                Please Try again, if the problem persist please,
-                                                 contact our server administrator.'''))
+                messages.error(self.request, _('''Something went wrong during your card processing.
+                        #                                         Please Try again, if the problem persist please,
+                        #                                          contact our server administrator.'''))
         return redirect('checkout:preview')
 
-    def handle_place_order_submission(self, resp):
+        #
+        #     pass
+        # else:
+        #
 
+    def handle_place_order_submission(self, **kwargs):
         """
         Handle a request to place an order.
         This method is normally called after the customer has clicked "place
@@ -70,14 +97,26 @@ class ReturnCheckoutView(PaymentDetailsView):
         override this method to ensure they are valid before extracting their
         data into the submission dict and passing it onto `submit`.
         """
-        if self.is_valid_payment_response(order_number=resp['order_number'], total=resp['total'],
-                                             key=resp['key']):
-            return self.submit(**self.build_submission())
-        raise PaymentError("The response isn't valid from the gateway")
+        action, resp = kwargs.get('action'), kwargs.get('params')
+
+        if action == 'place_order':
+            if not self.is_valid_payment_response(resp=resp):
+                # The card payment wasn't successfull
+                raise PaymentError('The payment wasn\'t successfull')
+
+
+        return self.submit(**self.build_submission())
+
+
+
 
 
     @staticmethod
-    def is_valid_payment_response(order_number, total, key):
+    def is_valid_payment_response(resp):
+        # Changes made here -> didn't test yet, but should be working
+        order_number = resp['order_number']
+        total = resp['total']
+        key = resp['key']
         new_key = hashlib.md5()
         new_key.update(settings.CHECKOUT_SECRET_KEY.encode('utf8'))
         new_key.update(settings.CHECKOUT_ACCOUNT_NUMBER.encode('utf8'))
