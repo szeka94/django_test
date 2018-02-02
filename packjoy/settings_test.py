@@ -1,14 +1,11 @@
-from packjoy.settings import *
+from settings import *
 
 
-MIGRATION_MODULES = {
-    'auth': None,
-    'contenttypes': None,
-    'default': None,
-    'sessions': None,
+DATABASES = {
+	'default': {
+		'ENGINE': 'django.db.backends.sqlite3',
+		'NAME': ':memory',
+	}
+}
 
-    'core': None,
-    'profiles': None,
-    'snippets': None,
-    'scaffold_templates': None,
-}	
+EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
