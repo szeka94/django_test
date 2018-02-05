@@ -1,1 +1,3 @@
-{}
+{
+  "apps/checkout/tests/test_views.py::TestShippingMethodView::()::test_anon_user_login_redirect": true
+}

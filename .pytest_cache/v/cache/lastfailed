@@ -1,3 +1,5 @@
 {
-  "packjoy/apps/checkout/tests/test_checkout_views.py": true
+  "packjoy/apps/checkout/tests/test_checkout_views.py": true,
+  "packjoy/apps/checkout/tests/test_views.py": true,
+  "packjoy/settings_test.py": true
 }

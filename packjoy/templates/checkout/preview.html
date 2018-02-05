@@ -14,10 +14,9 @@
 {% endblock %}
 
 {% block place_order %}
-    <form method="post" action="{{ submit.url }}" id="place_order_form">
+    <form method="post" action="{% url 'checkout:preview' %}" id="place_order_form">
         {% csrf_token %}
         <input type="hidden" name="action" value="place_order" />
-
         {% comment %}
             When submitting sensitive data on the payment details page (eg a bankcard)
             we don't want to save the data and so we pass the bound form to the preview
@@ -31,19 +30,52 @@
         </div>
 
         <div class="form-group clearfix">
+            <div class="row" style="margin-bottom: 15px;">
+                <div class="col-sm-3 col-sm-offset-6">
+                    <input id="tax-payment" type="checkbox" name="tax_included_payment" /> <b>{% trans "Include TAX into the payment" %}</b>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-sm-6">
                     &nbsp;
                 </div>
                 <div class="col-sm-3" style="margin-bottom: 20px;">
-                    <a class="btn btn-primary btn-lg btn-block" href="{% url 'checkout:return-redirect' %}?action=cod" style="text-decoration: none; font-size: 18px;">
+                    <button id='place-order' type="submit" class="btn btn-primary btn-lg btn-block" href="" style="text-decoration: none; font-size: 18px;">
                         {% trans "Pay with cash" %}
-                    </a>
+                    </button>
                 </div>
                 <div class="col-sm-3">
-                    <button id='place-order' type="submit" class="btn btn-primary btn-lg btn-block" data-loading-text="{% trans 'Submitting...' %}">{% trans "With Card" %}</button>
+                    <button disabled="True" id='place-order' type="submit" class="btn btn-primary btn-lg btn-block" data-loading-text="{% trans 'Submitting...' %}">{% trans "With Card" %}</button>
                 </div>
             </div>
         </div>
     </form>
 {% endblock place_order %}
+
+{% block extrascripts %}
+    {{ block.super }}
+    <script>
+    $(document).ready(function() {
+        var checkbox = $('#tax-payment');
+        var is_checked = false;
+        var totalElm = $('.price_color');
+        var totalAmount = totalElm.text().split('RON')[1];
+        var totalWithTVA = parseInt(totalAmount) + ( 0.24 * parseInt(totalAmount));
+        checkbox.click(function() {
+            is_checked = checkbox.is(':checked');
+            if(is_checked) {
+                totalElm.html(function() {
+                    return "RON" + totalWithTVA;
+                });
+            } else {
+                totalElm.html(function() {
+                    return "RON" + totalAmount;
+                });
+            };
+        });                 
+    });
+
+
+    </script>
+
+{% endblock %}
