@@ -116,7 +116,6 @@ class PaymentMethodView(CheckoutSessionMixin, generic.FormView):
         return super(PaymentMethodView, self).form_valid(form)
 
 
-
 class PaymentDetailsView(OscarPaymentDetailsView):
 
     def get_context_data(self, **kwargs):
