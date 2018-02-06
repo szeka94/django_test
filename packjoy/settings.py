@@ -48,9 +48,9 @@ INSTALLED_APPS = [
 
     'widget_tweaks',
 ] + get_core_apps([
-    'packjoy.apps.catalogue',
     'packjoy.apps.shipping',
     'packjoy.apps.checkout',
+    'packjoy.apps.partner',
 ])
 
 SITE_ID = 1
@@ -181,7 +181,7 @@ OSCAR_IMAGE_FOLDER = 'images/products/'
 
 OSCAR_DEFAULT_CURRENCY = 'RON'
 
-OSCAR_ALLOW_ANON_CHECKOUT = True
+OSCAR_ALLOW_ANON_CHECKOUT = False
 
 OSCAR_HIDDEN_FEATURES = ['wishlists']
 
@@ -191,6 +191,9 @@ OSCAR_FROM_EMAIL = 'ejoyletter@gmail.com'
 
 OSCAR_MISSING_IMAGE_URL = 'image_not_found.png'
 
+OSCAR_GOOGLE_ANALYTICS_ID = 'UA-113484675-1'
+
+OSCAR_MAX_BASKET_QUANTITY_THRESHOLD = 150
 
 # 2CHECKOUT settings
 CHECKOUT_SUBMIT_URL = os.environ.get('CHECKOUT_SUBMIT_URL')
@@ -205,3 +208,7 @@ EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
 MAILGUN_ACCESS_KEY = os.environ.get('MAILGUN_ACCESS_KEY')
 
 MAILGUN_SERVER_NAME = os.environ.get('MAILGUN_SERVER_NAME')
+
+ADMIN_MAIL_ADDRESSES = ['szeka1994@gmail.com', 'ejoy.main@gmail.com'] if DEBUG else ['szeka1994@gmail.com'] 
+
+MINIMUM_ORDER_QUANTITY = 5

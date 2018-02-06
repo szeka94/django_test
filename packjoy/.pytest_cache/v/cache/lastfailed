@@ -1,0 +1,3 @@
+{
+  "apps/checkout/tests/test_forms.py::TestCheckoutForms::()::test_shipping_address_form_required_fields": true
+}
