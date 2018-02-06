@@ -2,3 +2,10 @@
 *.pyc
 __pycache__
 *.pytest_cache
+*media
+/media/
+media/**
+packjoy/htmlcov/**
+packjoy/hmtlcov/*
+media/*
+
