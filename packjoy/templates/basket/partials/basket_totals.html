@@ -60,7 +60,7 @@
                     {% if offer_discounts or voucher_discounts %}
                         <tr>
                             <th class="total">{% trans "Basket total (after discounts)" %}</th>
-                            <th class="total align-right">
+                            <th class="total-element total align-right">
                                 {% if not show_tax_separately and basket.is_tax_known %}
                                     {{ basket.total_incl_tax|currency:basket.currency }}
                                 {% else %}
@@ -72,7 +72,7 @@
                         {# No discounts to basket #}
                         <tr>
                             <th class="total">{% trans "Basket total" %}</th>
-                            <th class="total align-right">
+                            <th class="total-element total align-right">
                                 {% if not show_tax_separately and basket.is_tax_known %}
                                     {{ basket.total_incl_tax|currency:basket.currency }}
                                 {% else %}
@@ -204,7 +204,7 @@
                 <tr>
                     <th class="total"><h3>{% trans "Order total" %}</h3></th>
                     <td class="total align-right">
-                        <h3 class="price_color">
+                        <h3 class="price_color total-element">
                             {% if order_total.is_tax_known %}
                                 {{ order_total.incl_tax|currency:basket.currency }}
                             {% else %}

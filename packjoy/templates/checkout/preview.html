@@ -58,8 +58,8 @@
     $(document).ready(function() {
         var checkbox = $('#tax-payment');
         var is_checked = false;
-        var totalElm = $('.price_color');
-        var totalAmount = totalElm.text().split('RON')[1];
+        var totalElm = $('.total-element');
+        var totalAmount = "{{ basket.total_incl_tax }}";
         var totalWithTVA = parseInt(totalAmount) + ( 0.24 * parseInt(totalAmount));
         checkbox.click(function() {
             is_checked = checkbox.is(':checked');
