@@ -39,13 +39,31 @@ class TestCheckoutView:
         self.init_checkout()
         req = RequestFactory().get('/')
         req.basket.add_product(self.product)
+        req.basket.add_product(self.product)
+        req.basket.add_product(self.product)
+        req.basket.add_product(self.product)
+        req.basket.add_product(self.product)
+        req.basket.add_product(self.product)
         resp = IndexView.as_view()(req)
         assert resp.status_code == 200, 'Should be logged in to checkout'
+
+    def test_user_needs_to_order_min_quantity(self):
+        self.init_checkout()
+        req = RequestFactory().get('/')
+        req.user = self.user
+        req.basket.add_product(self.product)
+        resp = views.ShippingAddressView.as_view()(req)
+        assert resp.status_code == 302
+        assert '/basket/' in resp.url
 
     def test_user_can_go_to_shipping_address_page(self):
         self.init_checkout()
         req = RequestFactory().get('/')
         req.user = self.user
+        req.basket.add_product(self.product)
+        req.basket.add_product(self.product)
+        req.basket.add_product(self.product)
+        req.basket.add_product(self.product)
         req.basket.add_product(self.product)
         resp = views.ShippingAddressView.as_view()(req)
         assert resp.status_code == 200

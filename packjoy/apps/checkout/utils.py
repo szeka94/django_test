@@ -16,16 +16,14 @@ def handle_line_save(**kwargs):
     Setting up a listener to force the user to order a minimum quantity
     ak. the MINIMUM_ORDER_QUANTITY variable from the setting file
     '''
-    print('Signal Received')
     if 'request' in kwargs:
         request = kwargs['request']
         basket = request.basket
-        
-
         for line in basket.lines.all():
-            print(line)
             if line.quantity < int(settings.MINIMUM_ORDER_QUANTITY):
-                messages.error(request,
-                        _('''Something went wrong during your card processing.
-                        Please Try again, if the problem persist please,
-                        contact our server administrator.'''))
+                messages.warning(request,
+                        _('''Please don\'t forget, 
+                            that our minimum order quantity 
+                            per product is: {} pieces.'''.format(
+                                settings.MINIMUM_ORDER_QUANTITY)))
+                raise InvalidBasketLineError('Invalid Basket Line Error')

@@ -71,7 +71,7 @@
             {% block product_stock_record %}
                 {% include "catalogue/partials/stock_record.html" with verbose=1 %}
             {% endblock %}
-
+            <p class="pull-right"><i>{% trans "The minimum order quantity is 5 pieces" %}</i></p>
             {% iffeature "reviews" %}
                 {% include "catalogue/reviews/partials/review_stars.html" %}
             {% endiffeature %}
@@ -81,6 +81,7 @@
             {% block product_basket_form %}
                 {% include "catalogue/partials/add_to_basket_form.html" %}
             {% endblock %}
+
         </div><!-- /col-sm-6 -->
         {% endblock %}
 
