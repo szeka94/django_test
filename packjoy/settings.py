@@ -31,7 +31,8 @@ DEBUG = os.environ.get('DEBUG_MODE', False)
 ALLOWED_HOSTS = ['ejoy.pythonanywhere.com',
                  'localhost',
                  'api.mailgun.net',
-                 'packjoy.store',]
+                 'packjoy.store'
+                 'www.packjoy.store',]
 
 
 # Application definition
