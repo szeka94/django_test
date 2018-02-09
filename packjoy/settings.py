@@ -59,6 +59,7 @@ SITE_ID = 1
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -140,7 +141,7 @@ AUTHENTICATION_BACKENDS = (
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'Europe/Bucharest'
 
@@ -171,10 +172,15 @@ HAYSTACK_CONNECTIONS = {
 }
 
 gettext_noop = lambda s: s
+
 LANGUAGES = (
     ('en', gettext_noop('English')),
-    ('hu', gettext_noop('Hungarian')),
     ('ro', gettext_noop('Romanian')),
+    ('hu', gettext_noop('Hungarian')),
+)
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
 )
 
 OSCAR_SHOP_NAME = 'Ejoy'
