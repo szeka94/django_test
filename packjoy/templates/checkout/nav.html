@@ -33,7 +33,7 @@
                 {% endif %}
             </li>
 
-            <li class="step3 {% if step == 3 %}active{% else %}{% if step == 4 %}previous{% else %}{% if step > 3 %}visited{% else %}disabled{% endif %}{% endif %}{% endif %} ">
+            <!-- <li class="step3 {% if step == 3 %}active{% else %}{% if step == 4 %}previous{% else %}{% if step > 3 %}visited{% else %}disabled{% endif %}{% endif %}{% endif %} ">
                 {% if step == 4 %}
                     <a href="{% url 'checkout:payment-details' %}">
                         <span class="visible-inline-sm icon-chevron-right"></span>
@@ -46,17 +46,17 @@
                         {%  trans "3. Payment" %}
                     </span>
                 {% endif %}
-            </li>
+            </li> -->
 
             <li class="step4 {% if step == 4 %}active{% else %}disabled{% endif %} ">
                 <span class="navbar-text">
-                    {% trans "4. Preview" %}
+                    {% trans "3. Preview" %}
                 </span>
             </li>
 
             <li class="step5 {% if step == 5 %}active{% else %}disabled{% endif %} ">
                 <span class="navbar-text">
-                    {% trans "5. Confirmation" %}
+                    {% trans "4. Confirmation" %}
                 </span>
             </li>
         {% endspaceless %}

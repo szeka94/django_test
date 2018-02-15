@@ -215,7 +215,7 @@
                 </tr>
                 {% if not order_total.is_tax_known %}
                     <tr>
-                        <td><small>{% trans "Taxes will be added during checkout." %}</small></td>
+                        <td><small>{% trans "The price doesn't include taxes." %}</small></td>
                     </tr>
                 {% endif %}
             {% endblock %}

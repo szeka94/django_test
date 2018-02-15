@@ -14,14 +14,11 @@
 <input type="hidden" name="li_{{ forloop.counter0 }}_type" value="{{ line.product.product_class }}" />
 <input type="hidden" name="li_{{ forloop.counter0 }}_name" value="{{ line.product.title }}" />
 <input type="hidden" name="li_{{ forloop.counter0 }}_product_id" value="{{ line.product.title }}" />
-<input type="hidden" name="li_{{ forloop.counter0 }}_price" value="{{ line.unit_price_incl_tax }}" />
 <input type="hidden" name="li_{{ forloop.counter0 }}_quantity" value="{{ line.quantity }}" />
 
-<!--<h1>{{ line.unit_price_incl_tax }}</h1>-->
 
 <!--<h1>li_{{ forloop.counter0 }}_type {{ line.product.product_class }}' </h1>-->
 <!--<h1>li_{{ forloop.counter0 }}_name {{ line.product.title }}' </h1>-->
 <!--<h1>li_{{ forloop.counter0 }}_product_id {{ line.product.title }}' </h1>-->
-<!--<h1>li_{{ forloop.counter0 }}_price {{ line.line_price_incl_tax }}' </h1>-->
 <!--<h1>li_{{ forloop.counter0 }}_quantity {{ line.quantity }}' </h1>-->
 {% endfor %}
