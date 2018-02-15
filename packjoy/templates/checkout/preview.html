@@ -30,11 +30,13 @@
         </div>
 
         <div class="form-group clearfix">
+            {% comment %}
             <div class="row" style="margin-bottom: 15px;">
                 <div class="col-sm-3 col-sm-offset-6">
                     <input id="tax-payment" type="checkbox" name="tax_included_payment" /> <b>{% trans "Include TAX into the payment" %}</b>
                 </div>
             </div>
+            {% endcomment %}
             <div class="row">
                 <div class="col-sm-6">
                     &nbsp;
@@ -54,6 +56,7 @@
 
 {% block extrascripts %}
     {{ block.super }}
+    {% comment %}
     <script>
     $(document).ready(function() {
         var checkbox = $('#tax-payment');
@@ -77,5 +80,6 @@
 
 
     </script>
+    {% endcomment %}
 
 {% endblock %}

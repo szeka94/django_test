@@ -22,7 +22,7 @@ class CheckoutSessionMixin(OscarCheckoutSessionMixin):
 			messages += e.messages
 		for line in request.basket.all_lines():
 			if line.quantity < int(settings.MINIMUM_ORDER_QUANTITY):
-				messages.append(_('Our minimum order quantity per product is {} pieces'
+				messages.append(_('Cantitate minimuma este {} bucati.'
 									.format(settings.MINIMUM_ORDER_QUANTITY)))
 		if messages:
 			raise FailedPreCondition(url=reverse('basket:summary'), messages=messages)
