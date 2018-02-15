@@ -1,6 +1,7 @@
 from decimal import Decimal as D
 
-from oscar.apps.partner.strategy import UseFirstStockRecord, StockRequired, FixedRateTax, Structured, Selector
+from oscar.apps.partner.strategy import UseFirstStockRecord, StockRequired, NoTax, Structured
+from oscar.apps.partner.strategy import Default, Selector
 from oscar.apps.partner.prices import FixedPrice as OscarFixedPrice
 from oscar.core.loading import get_class
 
@@ -12,11 +13,14 @@ UnavailablePrice = get_class('partner.prices', 'Unavailable')
 class FixedPrice(OscarFixedPrice):
     # @property
     # def incl_tax(self):
-    # 	'''
-    # 	Overwriting this to show the excl prices
-    # 	'''
-    # 	return self.excl_tax
-    show_tax_price = False
+    #   '''
+    #   Overwriting this to show the excl prices
+    #   '''
+    #   return self.excl_tax
+
+    is_tax_known = False
+    show_tax_separately = False
+
     @property
     def effective_price(self):
         return self.excl_tax
@@ -28,17 +32,14 @@ class Selector(Selector):
         return RomanianEclTVA(request=request)
 
 
-class RomanianEclTVA(UseFirstStockRecord, StockRequired, FixedRateTax, Structured):
-    rate = D('0.00') # no better idea for now
+class RomanianEclTVA(UseFirstStockRecord, StockRequired, NoTax, Structured):
 
-    def pricing_policy(self, product, stockrecord):
+   def pricing_policy(self, product, stockrecord):
+        # Check stockrecord has the appropriate data
         if not stockrecord or stockrecord.price_excl_tax is None:
             return UnavailablePrice()
-        rate = self.get_rate(product, stockrecord)
-        exponent = self.get_exponent(stockrecord)
-        tax = (stockrecord.price_excl_tax * rate).quantize(exponent)
         return FixedPrice(
             currency=stockrecord.price_currency,
-            excl_tax=stockrecord.price_excl_tax,
-            tax=tax)
+            excl_tax=stockrecord.price_excl_tax)
+
 

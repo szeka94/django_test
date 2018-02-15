@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-08 17:27+0200\n"
+"POT-Creation-Date: 2018-02-15 21:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: packjoy/apps/checkout/session.py:25
-msgid "Our minimum order quantity per product is {} pieces"
+msgid "Cantitate minimuma este {} bucati."
 msgstr ""
 
 #: packjoy/apps/checkout/utils.py:25
@@ -29,15 +29,15 @@ msgid ""
 "                            per product is: {} pieces."
 msgstr ""
 
-#: packjoy/settings.py:176
+#: packjoy/settings.py:177
 msgid "English"
 msgstr ""
 
-#: packjoy/settings.py:177
+#: packjoy/settings.py:178
 msgid "Romanian"
 msgstr ""
 
-#: packjoy/settings.py:178
+#: packjoy/settings.py:179
 msgid "Hungarian"
 msgstr ""
 
@@ -526,7 +526,7 @@ msgid "Order total"
 msgstr ""
 
 #: packjoy/templates/basket/partials/basket_totals.html:218
-msgid "Taxes will be added during checkout."
+msgid "The price doesn't include taxes."
 msgstr ""
 
 #: packjoy/templates/catalogue/browse.html:27
@@ -668,7 +668,7 @@ msgstr ""
 #: packjoy/templates/catalogue/partials/add_to_basket_form.html:26
 #: packjoy/templates/catalogue/partials/review.html:40
 #: packjoy/templates/catalogue/partials/review.html:45
-#: packjoy/templates/checkout/preview.html:49
+#: packjoy/templates/checkout/preview.html:52
 #: packjoy/templates/checkout/shipping_methods.html:58
 #: packjoy/templates/checkout/user_address_delete.html:29
 #: packjoy/templates/dashboard/catalogue/product_list.html:37
@@ -1070,11 +1070,11 @@ msgid "3. Payment"
 msgstr ""
 
 #: packjoy/templates/checkout/nav.html:53
-msgid "4. Preview"
+msgid "3. Preview"
 msgstr ""
 
 #: packjoy/templates/checkout/nav.html:59
-msgid "5. Confirmation"
+msgid "4. Confirmation"
 msgstr ""
 
 #: packjoy/templates/checkout/payment_details.html:5
@@ -1099,15 +1099,11 @@ msgstr ""
 msgid "Preview order"
 msgstr ""
 
-#: packjoy/templates/checkout/preview.html:36
-msgid "Include TAX into the payment"
-msgstr ""
-
-#: packjoy/templates/checkout/preview.html:45
+#: packjoy/templates/checkout/preview.html:48
 msgid "Pay with cash"
 msgstr ""
 
-#: packjoy/templates/checkout/preview.html:49
+#: packjoy/templates/checkout/preview.html:52
 msgid "With Card"
 msgstr ""
 

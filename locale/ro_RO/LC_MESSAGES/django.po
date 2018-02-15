@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django-oscar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-15 06:56+0200\n"
+"POT-Creation-Date: 2018-02-15 21:26+0200\n"
 "PO-Revision-Date: 2016-12-30 15:10+0000\n"
 "Last-Translator: Oscar Bot <maik.hoepfel@tangentsnowball.com>\n"
 "Language-Team: Romanian (Romania) (http://www.transifex.com/codeinthehole/"
@@ -38,15 +38,15 @@ msgid ""
 "                            per product is: {} pieces."
 msgstr "Alocare a %(amount)s din tipul %(type)s"
 
-#: packjoy/settings.py:176
+#: packjoy/settings.py:177
 msgid "English"
 msgstr ""
 
-#: packjoy/settings.py:177
+#: packjoy/settings.py:178
 msgid "Romanian"
 msgstr ""
 
-#: packjoy/settings.py:178
+#: packjoy/settings.py:179
 msgid "Hungarian"
 msgstr ""
 
@@ -128,7 +128,7 @@ msgstr "Acasa"
 #: packjoy/templates/checkout/layout.html:22
 #, python-format
 msgid "The price shown below doesn't contain the 24%% TAX"
-msgstr "Pretul nu conteaza TVA-ul."
+msgstr "Pretul nu contine TVA."
 
 #: packjoy/templates/basket/messages/addition.html:4
 #, python-format
@@ -556,8 +556,10 @@ msgid "Order total"
 msgstr "Total comanda"
 
 #: packjoy/templates/basket/partials/basket_totals.html:218
-msgid "Taxes will be added during checkout."
-msgstr "Taxele vor fi adaugate in timpul procesului de plata."
+#, fuzzy
+#| msgid "Line price incl. tax"
+msgid "The price doesn't include taxes."
+msgstr "Pretul este fara TVA."
 
 #: packjoy/templates/catalogue/browse.html:27
 msgid "Show results for"
@@ -646,11 +648,11 @@ msgstr "Tip Produs"
 
 #: packjoy/templates/catalogue/detail.html:117
 msgid "Price (excl. tax)"
-msgstr "Pret (excl. taxe)"
+msgstr "Pret (fara TVA)"
 
 #: packjoy/templates/catalogue/detail.html:121
 msgid "Price (incl. tax)"
-msgstr "Pret (incl. taxe)"
+msgstr "Pret (incl. tva)"
 
 #: packjoy/templates/catalogue/detail.html:128
 msgid "Availability"
@@ -704,7 +706,7 @@ msgstr "Poti primi o alerta pe email cand acest produs revine in stoc."
 #: packjoy/templates/catalogue/partials/add_to_basket_form.html:26
 #: packjoy/templates/catalogue/partials/review.html:40
 #: packjoy/templates/catalogue/partials/review.html:45
-#: packjoy/templates/checkout/preview.html:49
+#: packjoy/templates/checkout/preview.html:52
 #: packjoy/templates/checkout/shipping_methods.html:58
 #: packjoy/templates/checkout/user_address_delete.html:29
 #: packjoy/templates/dashboard/catalogue/product_list.html:37
@@ -1122,12 +1124,16 @@ msgid "3. Payment"
 msgstr "3. Plata"
 
 #: packjoy/templates/checkout/nav.html:53
-msgid "4. Preview"
-msgstr ""
+#, fuzzy
+#| msgid "Preview"
+msgid "3. Preview"
+msgstr "Previzualizre"
 
 #: packjoy/templates/checkout/nav.html:59
-msgid "5. Confirmation"
-msgstr ""
+#, fuzzy
+#| msgid "3. Condition"
+msgid "4. Confirmation"
+msgstr "3. Conditie"
 
 #: packjoy/templates/checkout/payment_details.html:5
 msgid "Payment details"
@@ -1151,15 +1157,11 @@ msgstr "Previzualizare comanda"
 msgid "Preview order"
 msgstr "Verifica comanda"
 
-#: packjoy/templates/checkout/preview.html:36
-msgid "Include TAX into the payment"
-msgstr ""
-
-#: packjoy/templates/checkout/preview.html:45
+#: packjoy/templates/checkout/preview.html:48
 msgid "Pay with cash"
 msgstr ""
 
-#: packjoy/templates/checkout/preview.html:49
+#: packjoy/templates/checkout/preview.html:52
 msgid "With Card"
 msgstr ""
 
@@ -1506,7 +1508,7 @@ msgstr "Data estimata de livrare"
 #: packjoy/templates/customer/anon_order.html:62
 #: packjoy/templates/customer/order/order_detail.html:20
 msgid "Line price excl. tax"
-msgstr "Pret linie excl. taxe"
+msgstr "Pret linie fara TVA"
 
 #: packjoy/templates/customer/anon_order.html:63
 #: packjoy/templates/customer/order/order_detail.html:21
@@ -3449,7 +3451,7 @@ msgstr ""
 
 #: packjoy/templates/dashboard/orders/order_detail.html:115
 msgid "Price excl tax (before discounts)"
-msgstr "Pret excl. taxe (inainte de discount-uri)"
+msgstr "Pret fara TVA (inainte de discount-uri)"
 
 #: packjoy/templates/dashboard/orders/order_detail.html:116
 msgid "Price inc tax (before discounts)"
@@ -3572,7 +3574,7 @@ msgstr "Taxa (incl. taxe)"
 
 #: packjoy/templates/dashboard/orders/order_detail.html:442
 msgid "Charge (excl tax)"
-msgstr "Taxa (excl. taxe)"
+msgstr "Taxa (fara TVA)"
 
 #: packjoy/templates/dashboard/orders/order_detail.html:485
 msgid "Payment sources"
@@ -5140,6 +5142,9 @@ msgstr ""
 "Ai vrut sa spui <a href=\"%(search_url)s?q=%(suggestion)s\">\"%(suggestion)s"
 "\"</a>?"
 
+#~ msgid "Taxes will be added during checkout."
+#~ msgstr "Taxele vor fi adaugate in timpul procesului de plata."
+
 #~ msgid "Our minimum order quantity per product is {} pieces"
 #~ msgstr "Cantitate minimuma este {} bucati."
 
@@ -5352,7 +5357,7 @@ msgstr ""
 #~ msgstr "Referinta Linie"
 
 #~ msgid "Price excl. Tax"
-#~ msgstr "Pret excl. Taxe"
+#~ msgstr "Pret fara TVA"
 
 #~ msgid "Price incl. Tax"
 #~ msgstr "Pret incl. Taxe"
@@ -6959,10 +6964,10 @@ msgstr ""
 #~ msgstr "Total comanda (incl. taxe)"
 
 #~ msgid "Order total (excl. tax)"
-#~ msgstr "Total comanda (excl. taxe)"
+#~ msgstr "Total comanda (fara TVA)"
 
 #~ msgid "Shipping charge (excl. tax)"
-#~ msgstr "Taxa transport (excl. taxe)"
+#~ msgstr "Taxa transport (fara TVA)"
 
 #~ msgid "Guest email address"
 #~ msgstr "Adresa de email"
@@ -7030,7 +7035,7 @@ msgstr ""
 #~ msgstr "Pret Bucata (incl. taxe)"
 
 #~ msgid "Unit Price (excl. tax)"
-#~ msgstr "Pret Bucata (excl. taxe)"
+#~ msgstr "Pret Bucata (fara TVA)"
 
 #~ msgid "Unit Retail Price"
 #~ msgstr "Pret Retail Bucata"
@@ -7065,7 +7070,7 @@ msgstr ""
 #~ msgstr "Transport (incl. taxe)"
 
 #~ msgid "Shipping (excl. tax)"
-#~ msgstr "Transport (excl. taxe)"
+#~ msgstr "Transport (fara TVA)"
 
 #~ msgid "Line Price"
 #~ msgstr "Pret Linie"

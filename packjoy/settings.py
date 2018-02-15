@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'packjoy.apps.shipping',
     'packjoy.apps.checkout',
     'packjoy.apps.partner',
+    'packjoy.apps.analytics',
 ])
 
 SITE_ID = 1
