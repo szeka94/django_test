@@ -26,6 +26,7 @@ from oscar.core import prices
 BillingAddressForm = get_class('checkout.forms', 'BillingAddressForm')
 CheckoutSessionMixin = get_class('checkout.session', 'CheckoutSessionMixin')
 UserAddress = get_model('address', 'UserAddress')
+Basket = get_model('basket', 'Basket')
 
 pp = pprint.PrettyPrinter(indent=4)
 
@@ -181,15 +182,12 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         '''
         # REFACTOR THIS SHIT, THIS IS NOT HOW IT SUPPOSED TO WORK
 
+        # basket = None
+        # if not self.request.basket.is_tax_know:
+        #     basket = 
+        # import ipdb
+        # ipdb.set_trace()
         submission = super(PaymentDetailsView, self).build_submission(**kwargs)
-        basket = submission['basket']
-        if tax_included is not None:
-            excl_tax = submission['order_total'].excl_tax
-            incl_tax = excl_tax + excl_tax * D('0.24')
-            currency = submission['order_total'].currency
-            submission['order_total'] = prices.Price(
-                                currency=currency,
-                                excl_tax=excl_tax, incl_tax=incl_tax,)
         return submission
 
 
