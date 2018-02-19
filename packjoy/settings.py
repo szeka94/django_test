@@ -99,7 +99,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'packjoy.wsgi.application'
 
-SECURE_SSL_REDIRECT = not os.environ.get('DEBUG_MODE', False)
+SECURE_SSL_REDIRECT = True
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
@@ -221,3 +221,8 @@ MAILGUN_SERVER_NAME = os.environ.get('MAILGUN_SERVER_NAME')
 ADMIN_MAIL_ADDRESSES = ['szeka1994@gmail.com', 'ejoy.main@gmail.com'] if DEBUG else ['szeka1994@gmail.com'] 
 
 MINIMUM_ORDER_QUANTITY = 5
+
+if DEBUG:
+    SESSION_COOKIE_SECURE = False
+    CSRF_COOKIE_SECURE = False
+    SECURE_SSL_REDIRECT = False

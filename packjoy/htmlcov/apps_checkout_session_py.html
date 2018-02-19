@@ -123,7 +123,7 @@
 <p id="t22" class="stm mis">                        <span class="nam">messages</span> <span class="op">+=</span> <span class="nam">e</span><span class="op">.</span><span class="nam">messages</span><span class="strut">&nbsp;</span></p>
 <p id="t23" class="stm run hide_run">                <span class="key">for</span> <span class="nam">line</span> <span class="key">in</span> <span class="nam">request</span><span class="op">.</span><span class="nam">basket</span><span class="op">.</span><span class="nam">all_lines</span><span class="op">(</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
 <p id="t24" class="stm run hide_run">                        <span class="key">if</span> <span class="nam">line</span><span class="op">.</span><span class="nam">quantity</span> <span class="op">&lt;</span> <span class="nam">int</span><span class="op">(</span><span class="nam">settings</span><span class="op">.</span><span class="nam">MINIMUM_ORDER_QUANTITY</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t25" class="stm run hide_run">                                <span class="nam">messages</span><span class="op">.</span><span class="nam">append</span><span class="op">(</span><span class="nam">_</span><span class="op">(</span><span class="str">'Our minimum order quantity per product is {} pieces'</span><span class="strut">&nbsp;</span></p>
+<p id="t25" class="stm run hide_run">                                <span class="nam">messages</span><span class="op">.</span><span class="nam">append</span><span class="op">(</span><span class="nam">_</span><span class="op">(</span><span class="str">'Cantitate minimuma este {} bucati.'</span><span class="strut">&nbsp;</span></p>
 <p id="t26" class="pln">                                                                        <span class="op">.</span><span class="nam">format</span><span class="op">(</span><span class="nam">settings</span><span class="op">.</span><span class="nam">MINIMUM_ORDER_QUANTITY</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t27" class="stm run hide_run">                <span class="key">if</span> <span class="nam">messages</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
 <p id="t28" class="stm run hide_run">                        <span class="key">raise</span> <span class="nam">FailedPreCondition</span><span class="op">(</span><span class="nam">url</span><span class="op">=</span><span class="nam">reverse</span><span class="op">(</span><span class="str">'basket:summary'</span><span class="op">)</span><span class="op">,</span> <span class="nam">messages</span><span class="op">=</span><span class="nam">messages</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
@@ -138,7 +138,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v4.4.2</a>,
-            created at 2018-02-06 22:50
+            created at 2018-02-19 06:00
         </p>
     </div>
 </div>
