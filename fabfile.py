@@ -30,3 +30,6 @@ def _update_virtualenv():
 
 def _update_database():
     run(workon + 'python manage.py migrate')
+
+def _update_translations():
+    run(workon + 'python manage.py compilemessages')

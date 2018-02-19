@@ -1,4 +1,4 @@
-from settings import *
+from packjoy.settings import *
 
 
 DATABASES = {

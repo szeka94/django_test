@@ -22,6 +22,8 @@ from oscar.core.loading import get_class, get_model
 from oscar.core.compat import user_is_authenticated
 from oscar.core import prices
 
+from . import tax
+
 
 BillingAddressForm = get_class('checkout.forms', 'BillingAddressForm')
 CheckoutSessionMixin = get_class('checkout.session', 'CheckoutSessionMixin')
@@ -141,22 +143,20 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         #         messages.error(self.request, _('''Something went wrong during your card processing.
         #                 #                                         Please Try again, if the problem persist please,
         #                 #                                          contact our server administrator.'''))
-        tax_included = self.request.POST.get('tax_included_payment', None)
-        print('Post Request')
         send_mail(
             'New order has created - fuckers',
             'Valaki csinalt egy rendelest, lepj fel a dasboardra tobb infoert. MOOST.',
             settings.OSCAR_FROM_EMAIL,
             settings.ADMIN_MAIL_ADDRESSES,
         )
-        self.handle_place_order_submission(tax_included=tax_included)
+        self.handle_place_order_submission()
         return redirect('checkout:thank-you')
         #
         #     pass
         # else:
         #
 
-    def handle_place_order_submission(self, tax_included, **kwargs):
+    def handle_place_order_submission(self, **kwargs):
         """
         Handle a request to place an order.
         This method is normally called after the customer has clicked "place
@@ -173,21 +173,16 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         #     if not self.is_valid_payment_response(resp=resp):
         #         # The card payment wasn't successfull
         #         raise PaymentError('The payment wasn\'t successfull')
-        return self.submit(**self.build_submission(tax_included))
+        return self.submit(**self.build_submission())
 
-    def build_submission(self, tax_included=None, **kwargs):
-        '''
-        we need to overwrite the price_incl_tax attribute to charge the
-        client with tax as well
-        '''
-        # REFACTOR THIS SHIT, THIS IS NOT HOW IT SUPPOSED TO WORK
+    def build_submission(self, **kwargs):
+        submission = super(CheckoutSessionMixin, self).build_submission(**kwargs)
+        submission = tax.apply_to(submission)
+        # import ipdb; ipdb.set_trace()
+        submission['order_total'] = self.get_order_totals(
+            submission['basket'],
+            submission['shipping_charge'])
 
-        # basket = None
-        # if not self.request.basket.is_tax_know:
-        #     basket = 
-        # import ipdb
-        # ipdb.set_trace()
-        submission = super(PaymentDetailsView, self).build_submission(**kwargs)
         return submission
 
 

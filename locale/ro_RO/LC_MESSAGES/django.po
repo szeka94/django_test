@@ -1159,7 +1159,7 @@ msgstr "Verifica comanda"
 
 #: packjoy/templates/checkout/preview.html:48
 msgid "Pay with cash"
-msgstr ""
+msgstr "Plata la livrare"
 
 #: packjoy/templates/checkout/preview.html:52
 msgid "With Card"
