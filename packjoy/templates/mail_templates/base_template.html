@@ -1,0 +1,308 @@
+{% load static %}
+
+<html>
+    <head>
+    <meta name="viewport" content="width=device-width"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <style type="text/css">
+    body {
+        margin: 0;
+        padding: 0;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+    }
+    img {
+        border: 0 none;
+        height: auto;
+        line-height: 100%;
+        text-decoration: none;
+        outline: none;
+        -ms-interpolation-mode: bicubic;
+    }
+    a img { border: 0 none; }
+    .image-reset img,
+    img.image-reset { display: block; }
+    table,
+    td {
+        border-collapse: collapse;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+    }
+    #wrapper {
+        margin: 0;
+        padding: 0;
+    }
+    .ExternalClass {
+        width:100%;
+    }
+    .ExternalClass,
+    .ExternalClass p,
+    .ExternalClass span,
+    .ExternalClass font,
+    .ExternalClass td,
+    .ExternalClass div {
+        line-height: 100%;
+    }
+    #outlook a {
+        padding: 0;
+    }
+    .desktop-hide {
+        display: none;
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        float: left;
+        font-size: 0;
+        line-height: 0;
+        mso-hide: all;
+    }
+    .desktop-hide img,
+    img.desktop-hide {
+        max-height: 0;
+        width: 0;
+    }
+    .align-left { text-align: left; }
+    .align-center {text-align: center; }
+    .align-right { text-align: right; }
+    #navigation {
+        background-color: #FFFFFF;
+        border-top: 1px solid #CACACA;
+        border-left: 1px solid #CACACA;
+        border-bottom: 1px solid #CACACA;
+        border-right: 1px solid #CACACA;
+    }
+    #navigation td {
+        text-align: center;
+    }
+    #navigation td a {
+        color: #606060;
+        font-family: Arial, Helvetica, sans-serif;
+        font-style: italic;
+        font-size: 16px;
+        text-decoration: none;
+    }
+    #navigation .nav-spacer {
+        background-color: #CACACA;
+    }
+    .block-content {
+        width: 100%; /* fills column width */
+        text-align: center; /* centers numbers not necessary for production */
+    }
+    </style>
+    <style type="text/css"  media="only screen and (max-width: 600px)">
+    @media screen and (max-width: 600px) {
+    #content-cell { padding: 0 20px; } /* adds some padding to the side of entire template for mobile devices */
+    div,
+    p,
+    a,
+    li,
+    span,
+    td { -webkit-text-size-adjust:none; }
+    .flex-image {
+        width: 100% !important;
+        height: auto;
+    }
+    .flex-button {
+        max-width:600px !important;
+        width:100% !important;
+    }
+    .flex-button a {
+        display: block !important;
+        font-size: 18px !important;
+    }
+    .mobile-hide { display: none !important; }
+    .desktop-hide {
+        display: block !important;
+        max-height: none !important;
+        overflow: visible !important;
+        float: none !important;
+        font-size: 12px !important;
+        line-height: 1.5 !important;
+    }
+    .display-table { display: table !important; }
+    table.desktop-hide {
+        display: table !important;
+    }
+    tr.desktop-hide {
+        display: table-row !important;
+    }
+    td.desktop-hide {
+        display: table-cell !important;
+    }
+    .desktop-hide img,
+    img.desktop-hide {
+        max-height: none !important;
+        width: auto !important;
+    }
+    .desktop-hide .flex-image {
+        width: 100% !important;
+    }
+    #content-table,
+    .row,
+    .fluid-row,
+    .md-fluid-row,
+    .row-spacer,
+    #navigation,
+    .row .col-1,
+    .row .col-2,
+    .row .col-3,
+    .row .col-4,
+    .row .col-5,
+    .row .col-6,
+    .row .col-7,
+    .row .col-8,
+    .row .col-9,
+    .row .col-10,
+    .row .col-11,
+    .col-12 { width: 100% !important; }
+
+    .fluid-row .col-1,
+    .md-fluid-row .col-1 { width: 8.25% !important;}
+    .fluid-row .col-2,
+    .md-fluid-row .col-2 { width: 16.5% !important;}
+    .fluid-row .col-3,
+    .md-fluid-row .col-3 { width: 25% !important;}
+    .fluid-row .col-4,
+    .md-fluid-row .col-4 { width: 33% !important;}
+    .fluid-row .col-5,
+    .md-fluid-row .col-5 { width: 41.25% !important;}
+    .fluid-row .col-6,
+    .md-fluid-row .col-6 { width: 50% !important;}
+    .fluid-row .col-7,
+    .md-fluid-row .col-7 { width: 57.75% !important;}
+    .fluid-row .col-8,
+    .md-fluid-row .col-8 { width: 66% !important;}
+    .fluid-row .col-9,
+    .md-fluid-row .col-8 { width: 74.25% !important;}
+    .fluid-row .col-10,
+    .md-fluid-row .col-10 { width: 82.5% !important; }
+    .fluid-row .col-11,
+    .md-fluid-row .col-11 { width: 90.75% !important;}
+    /* Custom styles */
+    .mobile-center, .mobile-center img {
+        text-align: center; 
+        margin: 0px auto;
+        float: none;
+    }
+    /* End of custom styles */
+    }
+    </style>
+    <style type="text/css"  media="only screen and (max-width: 481px)">
+    @media screen and (max-width: 481px) {
+        .md-fluid-row .col-1,
+        .md-fluid-row .col-2,
+        .md-fluid-row .col-3,
+        .md-fluid-row .col-4,
+        .md-fluid-row .col-5,
+        .md-fluid-row .col-6,
+        .md-fluid-row .col-7,
+        .md-fluid-row .col-8,
+        .md-fluid-row .col-9,
+        .md-fluid-row .col-10,
+        .md-fluid-row .col-11 {width: 100% !important;}
+    }
+    </style>
+    <!-- end responsive styles -->
+    </head>
+
+<body>
+<table id="wrapper" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr>
+<td class="content-table-wrapper" align="center">
+<table id="content-table" width="600" align="center" cellspacing="0" cellpadding="0" border="0">
+    <!-- patch for gmail app -->
+    <!--[if !mso]><!-->
+    <tr class="mobile-hide">
+        <td>
+            <img alt="" width="600" height="1" border="0" style="display:block;min-height:1px;max-height:1px;width:600px;min-width:600px;" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"/>
+        </td>
+    </tr>
+    <div style="display:none; white-space:nowrap; font:15px courier; line-height:0;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </div>
+    <!--[endif]-->
+    <!-- end patch for gmail app fix -->
+    <tr>
+        <td id="content-cell" align="center">
+            <!-- PREHEADER -->
+            <table id="preheader" class="fluid-row" width="600" align="center" cellspacing="0" cellpadding="0" border="0">
+                <tr><td height="10" align="center" style="font-size: 1px; line-height: 1px;">&nbsp;</td></tr>
+                <tr>
+                    <td align="center" style="font-size:10px; line-height:12px; font-family: Arial, Helvetica, sans-serif; color: black;">
+                        {{ preheader_text }}
+                    </td>
+                </tr>
+                <tr><td height="10" align="center" style="font-size: 1px; line-height: 1px;">&nbsp;</td></tr>
+            </table>
+            <!-- end PREHEADER -->
+            <!-- HEADER -->
+            <table id="header" class="fluid-row" width="600" align="center" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                    <td align="center" style="padding-top: 20px; padding-bottom: 20px;">
+                        <table class="col-12" width="600" align="left" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td class="mobile-center" align="left">
+                                    <a href="" target="_blank">
+                                        <img src="{% static 'img/logo@2x.jpg' %}" alt="Ejoy - online webshop" width="160" border="0" />
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td align="center" style="border-top: 1px solid #cccccc;">
+                        {% block content %}
+                        {% endblock content %}
+                    </td>
+                </tr>
+            </table>
+            <!-- 1 column | legal -->
+            <table class="row" width="600" align="center" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                    <td align="center" style="padding-bottom: 15px;">
+                        <table width="150" align="left" cellspacing="0" cellpadding="0" border="0">
+                            <tr>
+                                <td align="left" width="50">
+                                    <a href="https://fb.com" target="_blank">
+                                        <img src="{% static 'img/fb_logo_325x325.png' %}" width="40" border="0" alt="Facebook" />
+                                    </a>
+                                </td>
+                                <td align="left" width="50">
+                                    <a href="https://instagram.com" target="_blank">
+                                        <img src="{% static 'img/instagram_logo_1455x1455.png' %}" width="40" border="0" alt="Instagram" />
+                                    </a>
+                                </td>
+                                <td align="left" width="50">
+                                    <a href="https://pinterest.com" target="_blank">
+                                        <img src="{% static 'img/pinterest_logo_500x500.jpg' %}" width="40" border="0" alt="Pinterest" />
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" style="padding-bottom: 40px;">
+                        <table id="legal" class="col-12" width="580" align="left" cellspacing="0" cellpadding="0" border="0">
+                            <tr>
+                                <td align="left" style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; line-height: 13px; color: black;">
+                                    <b>PACKJOY ONLINE SHOP - UE Romania - CV/525400</b><br />
+                                    You recived this email because you might be intrested in the products above.<br />
+                                    If you want to unsubscribe, please click the link below!
+                                    Enjoy Buying - <a href="https://packjoy.herokuapp.com/" style="text-decoration: underline; color: black;">https://packjoy.herokuapp.com/</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <!-- end 1 column | legal -->
+        </td>
+    </tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
