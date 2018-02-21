@@ -5,10 +5,12 @@ from django.core.urlresolvers import reverse_lazy
 
 from oscar.app import Shop
 from oscar.views.decorators import login_forbidden
+from oscar.core.loading import get_class
 
 
 class EjoyShop(Shop):
     # Overriding default urls
+    analytics_app = get_class('analytics.app', 'application')
     def get_urls(self):
         urls = [
             url(r'', include(self.catalogue_app.urls)),
@@ -18,7 +20,7 @@ class EjoyShop(Shop):
             url(r'^search/', self.search_app.urls),
             url(r'^dashboard/', self.dashboard_app.urls),
             url(r'^offers/', self.offer_app.urls),
-
+            url(r'^analytics/', self.analytics_app.urls),
             # Password reset - as we're using Django's default view functions,
             # we can't namespace these urls as that prevents
             # the reverse function from working.
