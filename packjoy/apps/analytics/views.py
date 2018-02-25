@@ -3,19 +3,22 @@ import hashlib, hmac, json
 from django.views import View
 from django.conf import settings
 from django.http import HttpRequest
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 
 from .models import EmailRecord
 
-
+@method_decorator(csrf_exempt, name='dispatch')
 class EmailAnalytics(View):
-
-	def post(self, request, type):
+	def post(self, request):
 		'''
 		Endpoint for the mailgun trackings
 		@TODO: Move this thing inside a job, 
 		shouldn't just hang in here
 		'''
-		data = json.loads(request.body)
+		body = request.body.decode('utf-8')
+		data = json.loads(body)
+		print(data)
 		if not self.verify(token=data['token'], timestamp=data['timestamp'],
 						   signature=data['signature']):
 			# In this case we want mailgun to retry the request

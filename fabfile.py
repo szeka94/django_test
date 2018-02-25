@@ -14,6 +14,7 @@ def deploy():
         _get_latest_source()
         _update_virtualenv()
         _update_database()
+        _restart_web_server()
 
 
 def _get_latest_source():
@@ -30,3 +31,6 @@ def _update_virtualenv():
 
 def _update_database():
     run(workon + 'python manage.py migrate')
+
+def _restart_web_server():
+    run('touch /var/www/www_packjoy_store_wsgi.py')
