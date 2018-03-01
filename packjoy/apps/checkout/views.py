@@ -141,55 +141,18 @@ class PaymentDetailsView(OscarPaymentDetailsView):
         #         messages.error(self.request, _('''Something went wrong during your card processing.
         #                 #                                         Please Try again, if the problem persist please,
         #                 #                                          contact our server administrator.'''))
-        tax_included = self.request.POST.get('tax_included_payment', None)
-        print('Post Request')
         send_mail(
             'New order has created - fuckers',
             'Valaki csinalt egy rendelest, lepj fel a dasboardra tobb infoert. MOOST.',
             settings.OSCAR_FROM_EMAIL,
             settings.ADMIN_MAIL_ADDRESSES,
         )
-        self.handle_place_order_submission(tax_included=tax_included)
+        self.handle_place_order_submission(request)
         return redirect('checkout:thank-you')
         #
         #     pass
         # else:
         #
-
-    def handle_place_order_submission(self, tax_included, **kwargs):
-        """
-        Handle a request to place an order.
-        This method is normally called after the customer has clicked "place
-        order" on the preview page. It's responsible for (re-)validating any
-        form information then building the submission dict to pass to the
-        `submit` method.
-        If forms are submitted on your payment details view, you should
-        override this method to ensure they are valid before extracting their
-        data into the submission dict and passing it onto `submit`.
-        """
-        # action, resp = kwargs.get('action'), kwargs.get('params')
-
-        # if action == 'place_order':
-        #     if not self.is_valid_payment_response(resp=resp):
-        #         # The card payment wasn't successfull
-        #         raise PaymentError('The payment wasn\'t successfull')
-        return self.submit(**self.build_submission(tax_included))
-
-    def build_submission(self, tax_included=None, **kwargs):
-        '''
-        we need to overwrite the price_incl_tax attribute to charge the
-        client with tax as well
-        '''
-        # REFACTOR THIS SHIT, THIS IS NOT HOW IT SUPPOSED TO WORK
-
-        # basket = None
-        # if not self.request.basket.is_tax_know:
-        #     basket = 
-        # import ipdb
-        # ipdb.set_trace()
-        submission = super(PaymentDetailsView, self).build_submission(**kwargs)
-        return submission
-
 
     # @staticmethod
     # def is_valid_payment_response(resp):

@@ -18,9 +18,6 @@ class FixedPrice(OscarFixedPrice):
     #   '''
     #   return self.excl_tax
 
-    tax = None
-    show_tax_separately = False
-
     @property
     def effective_price(self):
         return self.excl_tax

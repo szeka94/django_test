@@ -5,6 +5,8 @@ from django.utils.translation import ugettext as _
 from oscar.apps.checkout.exceptions import FailedPreCondition
 from oscar.apps.checkout.session import CheckoutSessionMixin as OscarCheckoutSessionMixin
 
+from . import tax
+
 
 class CheckoutSessionMixin(OscarCheckoutSessionMixin):
 	'''
@@ -27,3 +29,17 @@ class CheckoutSessionMixin(OscarCheckoutSessionMixin):
 		if messages:
 			raise FailedPreCondition(url=reverse('basket:summary'), messages=messages)
 
+	def build_submission(self, **kwargs):
+		'''
+		we need to overwrite the price_incl_tax attribute to 
+		continue checkout at this point
+		'''
+		# REFACTOR THIS SHIT, THIS IS NOT HOW IT SUPPOSED TO WORK
+
+		submission = super(CheckoutSessionMixin, self).build_submission(**kwargs)
+		if submission['shipping_address']:
+			tax.apply_to(submission)
+			submission['order_total'] = self.get_order_totals(
+					submission['basket'],
+					shipping_charge=submission['shipping_method'])
+		return submission

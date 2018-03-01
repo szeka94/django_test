@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.flatpages',
     'django.contrib.sites',
-
     'widget_tweaks',
 ] + get_core_apps([
     'packjoy.apps.shipping',
