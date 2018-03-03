@@ -51,7 +51,6 @@ INSTALLED_APPS = [
     'packjoy.apps.shipping',
     'packjoy.apps.checkout',
     'packjoy.apps.partner',
-    'packjoy.apps.analytics',
 ])
 
 SITE_ID = 1
@@ -157,7 +156,7 @@ USE_TZ = True
 STATIC_URL = '/packjoy/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'packjoy/static'),
 ]
 
 
