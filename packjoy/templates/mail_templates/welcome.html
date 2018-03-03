@@ -1,22 +1,55 @@
 {% extends 'mail_templates/base_template.html' %}
 
+{% load thumbnail %}
+{% load static %}
+
 {% block content %}
-<table class="row" width="600" align="center" cellspacing="0" cellpadding="0" border="0">
+<table class="row" width="560" align="center" cellspacing="0" cellpadding="0" border="0">
     <tr>
-        <td align="center">
-            <table class="col-12" width="580" align="center" cellspacing="0" cellpadding="0" border="0">
+        <td align="center" style="padding-top: 30px; padding-bottom: 30px;">
+            <table class="block-content" align="center" cellspacing="0" cellpadding="0" border="0">
                 <tr>
-                    <td align="center">
-                        <table class="block-content" align="center" cellspacing="0" cellpadding="0" border="0">
-                            <tr>
-                                <td align="center">
-                                    <h1>Hi there</h1>
-                                </td>
-                            </tr>
-                        </table>
+                    <td align="left" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; line-height: 38px; font-weight: bold; color: #666666;"> 
+                        Hi there
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" style="padding-top:10px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 15px; color: #666666;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;During our market research we saw that you are intrested in <a href="https://www.packjoy.store/en/category/packjoy_1/" target="_blank" style="font-weight: bold; text-decoration: underline; color: #666666;">Tobaco Products</a> so please let us introduce our company and products..<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;We are a young, fast evolving online b2b <small><i>(business to business)</i></small> company with products within different industries and we would be more than happy to build long-term relationship with your company! Please see below our product catalog and let us know if you are intrested in one of these. <br><br>
+                        Bests,<br />
+                        <b>Packjoy Team</b>
                     </td>
                 </tr>
             </table>
+        </td>
+    </tr>
+</table>
+<table class="row" width="600" align="center" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+        <td align="center">       
+        {% for product in products %}
+            <table width="198" class="col-4" align="center" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                    <td align="center">
+                        <a href="https://www.packjoy.store{{ product.get_absolute_url|urlencode }}" target="_blank">
+                        {% with image=product.primary_image %}
+                            {% thumbnail image.original "220x200" upscale=False as thumb %}
+                                <img src="{{ thumb.url }}" alt="{{ product.get_title }}" />
+                            {% endthumbnail %}
+                        {% endwith %}
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" style="padding-top: 10px; padding-bottom: 25px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 15px; color: #666666; text-decoration: underline;">
+                        <a href="https://www.packjoy.store{{ product.get_absolute_url|urlencode }}" target="_blank" style="text-decoration: underline; color: #666666;">
+                            <i>Shop</i> {{ product.get_title }}
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        {% endfor %}
         </td>
     </tr>
 </table>

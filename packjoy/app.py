@@ -21,6 +21,7 @@ class EjoyShop(Shop):
             url(r'^dashboard/', self.dashboard_app.urls),
             url(r'^offers/', self.offer_app.urls),
             url(r'^analytics/', self.analytics_app.urls),
+            url(r'^mail-templates/', include('packjoy.apps.mail.urls')),
             # Password reset - as we're using Django's default view functions,
             # we can't namespace these urls as that prevents
             # the reverse function from working.
