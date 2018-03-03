@@ -12,7 +12,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 from oscar.defaults import *
 from oscar import get_core_apps
 import os
-
+from django.utils.translation import ugettext_lazy as _
+ 
 
 location = lambda x: os.path.join(os.path.dirname(os.path.realpath(__file__)), x)
 
@@ -51,6 +52,7 @@ INSTALLED_APPS = [
     'packjoy.apps.shipping',
     'packjoy.apps.checkout',
     'packjoy.apps.partner',
+    'packjoy.apps.dashboard',
 ])
 
 SITE_ID = 1
@@ -201,6 +203,15 @@ OSCAR_MISSING_IMAGE_URL = 'image_not_found.png'
 OSCAR_GOOGLE_ANALYTICS_ID = 'UA-113484675-1'
 
 OSCAR_MAX_BASKET_QUANTITY_THRESHOLD = 150
+
+OSCAR_DASHBOARD_NAVIGATION += [
+    {
+        'label': _('Email Marketing'),
+        'icon': 'icon-dashboard',
+        'url_name': 'dashboard:email:index',
+        'access_fn': lambda user, url_name, url_args, url_kwargs: user.is_staff,
+    }
+]
 
 # 2CHECKOUT settings
 CHECKOUT_SUBMIT_URL = os.environ.get('CHECKOUT_SUBMIT_URL')
