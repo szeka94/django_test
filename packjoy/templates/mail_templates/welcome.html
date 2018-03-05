@@ -35,14 +35,14 @@
                         <a href="https://www.packjoy.store{{ product.get_absolute_url|urlencode }}" target="_blank">
                         {% with image=product.primary_image %}
                             {% thumbnail image.original "220x200" upscale=False as thumb %}
-                                <img src="{{ thumb.url }}" alt="{{ product.get_title }}" />
+                                <img src="https://www.packjoy.store{{ thumb.url }}" alt="{{ product.get_title }}" />
                             {% endthumbnail %}
                         {% endwith %}
                         </a>
                     </td>
                 </tr>
                 <tr>
-                    <td align="center" height="70" valign="top" style="padding-top: 10px; padding-bottom: 25px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 15px; color: #666666; text-decoration: underline;">
+                    <td align="center" height="70" valign="top" style="padding-top: 10px; padding-left: 10px; padding-right: 10px; padding-bottom: 25px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 15px; color: #666666; text-decoration: underline;">
                         <a href="https://www.packjoy.store{{ product.get_absolute_url|urlencode }}" target="_blank" style="text-decoration: underline; color: #666666;">
                             <i>Shop</i> {{ product.get_title }}
                         </a>
@@ -50,6 +50,19 @@
                 </tr>
             </table>
         {% endfor %}
+        </td>
+    </tr>
+    <tr>
+        <td align="left" style="padding-left: 20px; padding-top: 10px; padding-bottom: 40px;">
+            <table class="col-12" width="580" align="center" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                    <td align="left" style="font-family: Arial, Helvetica, sans-serif; font-size: 20px; color: #666666; line-height: 24px; text-align: left; font-weight: bold; font-style: italic;">
+                        <a href="https://www.packjoy.store/en/category/packjoy_1/" target="_blank" style="color: #666666; text-decoration: underline;">
+                            You can get more from the site &#9658;
+                        </a>
+                    </td>
+                </tr>
+            </table>
         </td>
     </tr>
 </table>
