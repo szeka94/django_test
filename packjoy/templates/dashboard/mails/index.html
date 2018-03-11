@@ -20,17 +20,21 @@
 {% endblock %}
 
 {% block dashboard_content %}
-    <div class="table-header">
-        <h3><i class="icon-bar-chart icon-large"></i>{% trans "Send Marketing Emails" %}</h3>
-    </div>
-    <div class="well">
-        <form method="POST" action="." class="form-inline">
-            {% csrf_token %}
-            {% include "dashboard/partials/form_fields_inline.html" with form=form %}
-            <span class="form-group">
-                <button type="submit" class="btn btn-primary" data-loading-text="{% trans 'Sending...' %}">{% trans "Send Email" %}</button>
-            </span>
-        </form>
+    <div class="col-md-8 col-md-offset-2">
+        <div class="table-header">
+            <h3><i class="icon-bar-chart icon-large"></i>{% trans "Send Marketing Emails" %}</h3>
+        </div>
+        <div class="well">
+            <form method="POST" action=".">
+                {% csrf_token %}
+                {% for field in form %}
+                    {% include 'dashboard/partials/form_field.html' with field=field %}
+                {% endfor %}
+                <span class="form-group">
+                    <button type="submit" class="btn btn-primary" data-loading-text="{% trans 'Sending...' %}">{% trans "Send Email" %}</button>
+                </span>
+            </form>
+        </div>
     </div>
 
     {% if description %}

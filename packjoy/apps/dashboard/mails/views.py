@@ -4,6 +4,12 @@ from django.core.mail import send_mail
 from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
 
+# for some reason this isn't working
+# I have to import the Product model directly
+# from the oscar libary
+# from oscar.core.loading import get_model
+from oscar.apps.catalogue.models import Product
+
 from .forms import EmailSenderForm
 
 
@@ -22,33 +28,52 @@ class IndexView(generic.View):
 		and should send a test email to the given address
 		or send bulk emails to the given mailing list
 		'''
+		# import ipdb; ipdb.set_trace()
 		form = self.form(request.POST)
 		if form.is_valid():
-			self.handle_mail_list_sending(data=form.data)
+			product_ids = [value for key, value in request.POST.items() if 'product_' in key]
+			product_ids = [product_id for product_id in product_ids if product_id]
+			products = self._get_products(product_ids=product_ids)
+			campaign_type = form.data['campaign_type']
+			template = self.get_template_with_context(campaign_type=campaign_type,
+													products=products)
+			recipients = form.data['recipient'].split(',')
+			self.handle_mail_list_sending(template=template, 
+										  recipients=recipients)
 			# if form.data.get('is_email_list') == '2':
 				# should send bulk emails to the email list provided
 			return redirect('dashboard:index')
 
-	def handle_mail_list_sending(self, data):
+	def handle_mail_list_sending(subject_line='This is a test subject line.',
+								 recipients=[],
+								 template=None):
 		'''
 		This method is responsible to send the
 		api request to the mailgun, to send
 		bulk emails to the given email address
 		'''
-		template_path = self.html_email_template.format(data['campaign_type'])
-		template = render_to_string(template_path)
-		sl_fallback = 'This is a test subject line.'
-		recipients = []
-		if data.get('is_email_list') == '2':
-			# should send bulk emails to the email list provided
-			print('Not implemented')
-		else:
-			recipients.append(data.get('recipient'))
 		send_mail(
-			subject=data.get('subject_line', sl_fallback),
+			subject=subject_line,
 			message =template,
 			html_message=template,
 			from_email=settings.OSCAR_FROM_EMAIL,
 			recipient_list=recipients,
 		)
 
+	@staticmethod
+	def _get_products(product_ids):
+		'''
+		it returns Product Objects based
+		on a list of ids
+		'''
+		products = list(Product.objects.filter(id__in=product_ids))
+		return products
+
+	def get_template_with_context(self, campaign_type, products):
+		'''
+		this method saves the prepares the template
+		for emails
+		'''
+		template_path = template_path = self.html_email_template.format(campaign_type)
+		template = render_to_string(template_path, {'products': products})
+		return template
