@@ -38,22 +38,19 @@ class IndexView(generic.View):
 			template = self.get_template_with_context(campaign_type=campaign_type,
 													products=products)
 			recipients = form.data['recipient'].split(',')
-			self.handle_mail_list_sending(template=template, 
+			self.handle_mail_list_sending(subject=form.data['subject_line'], template=template, 
 										  recipients=recipients)
-			# if form.data.get('is_email_list') == '2':
-				# should send bulk emails to the email list provided
 			return redirect('dashboard:index')
 
-	def handle_mail_list_sending(subject_line='This is a test subject line.',
-								 recipients=[],
-								 template=None):
+	@staticmethod
+	def handle_mail_list_sending(subject=None, recipients=[], template=None):
 		'''
 		This method is responsible to send the
 		api request to the mailgun, to send
 		bulk emails to the given email address
 		'''
 		send_mail(
-			subject=subject_line,
+			subject=subject,
 			message =template,
 			html_message=template,
 			from_email=settings.OSCAR_FROM_EMAIL,
