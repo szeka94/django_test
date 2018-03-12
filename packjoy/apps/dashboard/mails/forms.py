@@ -24,12 +24,16 @@ class EmailSenderForm(forms.Form):
 												  ' would like to send.'))
 	# the email address of the recipient
 	# or the name of the mailing list
-	recipient = forms.CharField(max_length=256,
+	recipient = forms.CharField(max_length=9999999,
 								min_length=6,
 								widget=forms.Textarea,
 								label=_('Email address/list name'),
 								help_text=_('Please enter the email address'
 											' or the name of the email list.'))
+	# this is the field for the subject line of the emal
+	subject_line = forms.CharField(max_length=524,
+								   min_length=4,
+								   label=_('Subject of the email'))
 	# TODO: do some research and refactor the products field
 	# below to use a for loop instead hardcoding each one
 	product_1 = forms.ModelChoiceField(queryset=Product.objects.all(),
