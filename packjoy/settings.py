@@ -227,6 +227,7 @@ MAILGUN_ACCESS_KEY = os.environ.get('MAILGUN_ACCESS_KEY')
 
 MAILGUN_SERVER_NAME = os.environ.get('MAILGUN_SERVER_NAME')
 
-ADMIN_MAIL_ADDRESSES = ['szeka1994@gmail.com', 'ejoy.main@gmail.com'] if DEBUG else ['szeka1994@gmail.com'] 
+ADMIN_MAIL_ADDRESSES = ['ejoy.main@gmail.com'] if DEBUG else ['szeka1994@gmail.com', 'ejoy.main@gmail.com',
+                                                                                     'konatkalman@gmail.com', 'dragosimbrea@yahoo.it'] 
 
 MINIMUM_ORDER_QUANTITY = 5
